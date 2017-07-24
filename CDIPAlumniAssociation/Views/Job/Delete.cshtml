@@ -1,0 +1,112 @@
+﻿@model CDIPAlumniAssociation.Models.JobInfo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>JobInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobNature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobNature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationalRequirement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EducationalRequirement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperienceRequirement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperienceRequirement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalRequirement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalRequirement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfVacancies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfVacancies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryRange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherBenefit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherBenefit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationDeadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationDeadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approval)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approval)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,113 @@
+﻿@model CDIPAlumniAssociation.Models.Batch
+
+@*@model CDIPAlumniAssociation.Models.User*@
+
+@{
+    ViewBag.Title = "Alumni Directory";
+    var userList = ViewBag.Users;
+}
+
+@*@section Styles {
+    <link href="~/Content/Theme_Assets/jquery.dataTables.min.css" rel="stylesheet" />
+}*@
+
+<header id="head" class="secondary">
+    <div class="container">
+        <h1>Alumni Directory</h1>
+        <p>Find alumni information of all programs including their contact information and current job status</p>
+    </div>
+</header>
+
+
+<div class="container" style="padding-top: 20px;">
+
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProgramId, "Select Program Name", new {@class = "control-label col-md-2"})
+                    <div class="col-md-4">
+                        @Html.DropDownList("ProgramId", null, "Select Program", new {@class = "form-control", required = "required"})
+                        
+                        @Html.ValidationMessageFor(model => model.ProgramId)
+                    </div>
+                    <input type="submit" value="Search" class="btn btn-default"/>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    @if (userList != null)
+    {
+        <div class="row">
+            <table id="myTable" class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile No</th>
+                        <th>Email</th>
+                        <th>Current Job Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile No</th>
+                        <th>Email</th>
+                        <th>Current Job Status</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in userList)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.Email</td>
+                            @if (item.CurrentJobInfo != null)
+                            {
+                                <th>@item.CurrentJobInfo</th>
+                            }
+                            else
+                            {
+                                <td>Not Found</td>
+                            }
+                            <td>@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Content/Theme_Assets/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Theme_Assets/DataTables/dataTables.bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#myTable').DataTable({ responsive: true });
+
+            });
+
+    </script>
+
+
+    
+}

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Alumni Details";
+    var userDetails = ViewBag.UserDetails;
+}
+
+<header id="head" class="secondary">
+    <div class="container">
+        <h1>@userDetails[0].Name</h1>
+        @*<p>Find alumni information of all programs including their contact information and current job status</p>*@
+    </div>
+</header>
+
+<!-- container -->
+<section class="container">
+    <div class="row">
+        <!-- main content -->
+        <section class=" col-lg-4 maincontent">
+
+            <h3>Name</h3>
+            <p>@userDetails[0].Name</p>
+
+            <h3>Address</h3>
+            <p>@userDetails[0].Address</p>
+
+            <h3>Email</h3>
+            <p>@userDetails[0].Email</p>
+
+            <h3>Phone</h3>
+            <p>@userDetails[0].MobileNo</p>
+
+        </section>
+
+        <section class="col-md-6">
+            <div>
+                <p>
+                    <img src="~/Content/Theme_Assets/images/about.jpg" alt="" class="img-rounded pull-right" width="300">
+                </p>
+
+                <h3>Current Job Status</h3>
+                @if (userDetails[0].CurrentJobInfo != null)
+                {
+                    <p>@userDetails[0].CurrentJobInfo</p>
+                }
+                else
+                {
+                    <p>Job Not Found</p>
+                }
+                
+                <h3>Program Name</h3>
+                <p>@userDetails[0].Batch.Program.Name</p>
+
+                <h3>Batch Number</h3>
+                <p>@userDetails[0].Batch.BatchNumber</p>
+
+                <h3>Student Id</h3>
+                <p>@userDetails[0].StudentId</p>
+
+            </div>
+        </section>
+        <!-- /main -->
+        <!-- Sidebar -->
+        
+
+    </div>
+</section>
+

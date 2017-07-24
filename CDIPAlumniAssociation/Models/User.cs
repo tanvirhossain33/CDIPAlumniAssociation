@@ -39,6 +39,13 @@ namespace CDIPAlumniAssociation.Models
         [NotMapped]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [NotMapped]
+        [EmailAddress]
+        //[Remote("IsEmailRegistered", "Account", ErrorMessage = "This Email is not Registered yet.")]
+        [DisplayName("Email")]
+        public string UserName { get; set; }
+
         
         public string CurrentJobInfo { get; set; }
 

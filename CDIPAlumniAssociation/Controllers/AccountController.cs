@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CDIPAlumniAssociation.Models;
 using CDIPAlumniAssociation.Context;
 
@@ -16,31 +17,61 @@ namespace CDIPAlumniAssociation.Controllers
     {
         private ApplicationContext db = new ApplicationContext();
 
-        
-        public ActionResult Index()
+
+        public ActionResult Login()
         {
-            var users = db.Users.Include(u => u.Batch).Include(u => u.Gender);
-            return View(users.ToList());
+            var registerUser = Session["user"] as User;
+
+            if (registerUser != null)
+            {
+                RedirectToAction("index", "Home");
+            }
+
+            ViewBag.Message = null;
+            return View();
         }
 
-        
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public ActionResult Login(User user)
         {
-            if (id == null)
+            
+
+            var any = db.Users.Any(c => c.Email == user.UserName && c.Password == user.Password);
+
+            if (any)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var userInfo = db.Users.FirstOrDefault(c => c.Email == user.UserName);
+
+                Session["user"] = new User()
+                {
+                    Id = user.Id,
+                    StudentId = user.StudentId,
+                    Name = user.Name,
+                    Address = user.Address,
+                    MobileNo = user.MobileNo,
+                    Email = user.Email,
+                    Password = user.Password,
+                    CurrentJobInfo = user.CurrentJobInfo
+                };
+
+                return RedirectToAction("Index", "Home");
+                
             }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+
+            ViewBag.Message = "username and password is incorrect";
+
+            return View();
         }
 
-        
         public ActionResult Create()
         {
+
+            var registerUser = Session["user"] as User;
+
+            if (registerUser != null)
+            {
+                RedirectToAction("index", "Home");
+            }
 
             ViewBag.Programs = db.Programs.ToList();
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name");
@@ -107,62 +138,14 @@ namespace CDIPAlumniAssociation.Controllers
             return View();
         }
 
-        
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
        
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BatchId = new SelectList(db.Batches, "Id", "BatchNumber", user.BatchId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", user.GenderId);
-            return View(user);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,StudentId,Name,Address,MobileNo,Email,Password,CurrentJobInfo,Approval,BatchId,GenderId")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.BatchId = new SelectList(db.Batches, "Id", "BatchNumber", user.BatchId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", user.GenderId);
-            return View(user);
-        }
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        
 
         protected override void Dispose(bool disposing)
         {
@@ -177,6 +160,12 @@ namespace CDIPAlumniAssociation.Controllers
         {
             return Json(!db.Users.Any(c => c.Email == email), JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult IsEmailRegistered(string email)
+        //{
+            
+        //    return Json(db.Users.Any(c => c.Email == email), JsonRequestBehavior.AllowGet);
+        //}
 
 
         [HttpPost]

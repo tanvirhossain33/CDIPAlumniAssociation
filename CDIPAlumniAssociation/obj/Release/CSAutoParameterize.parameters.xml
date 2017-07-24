@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ApplicationContext-Web.config Connection String" description="ApplicationContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=mssql6.gear.host;Initial Catalog=cdipalumni;User Id=cdipalumni;Password=Dr2M-4Sui!nN;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Tanvir\\Documents\\Visual\ Studio\ 2013\\Projects\\CDIPAlumniAssociation\\CDIPAlumniAssociation\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationContext']/@connectionString" />
+  </parameter>
+</parameters>

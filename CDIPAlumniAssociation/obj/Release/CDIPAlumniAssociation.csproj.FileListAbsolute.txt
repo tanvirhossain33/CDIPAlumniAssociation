@@ -56,3 +56,6 @@ C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIP
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.csproj.GenerateResource.Cache
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.dll
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.pdb
+C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.Migrations.V3.resources
+C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.Migrations.V4.resources
+C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Release\CDIPAlumniAssociation.Migrations.V5.resources

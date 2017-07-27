@@ -1,116 +1,149 @@
 ﻿@model CDIPAlumniAssociation.Models.JobInfo
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Post Jobs";
+    var message = ViewBag.Message;
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>JobInfo</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+<header id="head" class="secondary">
+    <div class="container">
+        @if (message == null)
+        {
+            <h1>Job Post</h1>
+        }
+        else
+        {
+            if (message == "Job Posted  successfully")
+            {
+                <h1 style="color: greenyellow">@message</h1>
+            }
+            else
+            {
+                <h1 style="color: red">@message</h1>
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.JobTitle, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.JobTitle)
-                @Html.ValidationMessageFor(model => model.JobTitle)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.JobNature, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.JobNature)
-                @Html.ValidationMessageFor(model => model.JobNature)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EducationalRequirement, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EducationalRequirement)
-                @Html.ValidationMessageFor(model => model.EducationalRequirement)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ExperienceRequirement, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExperienceRequirement)
-                @Html.ValidationMessageFor(model => model.ExperienceRequirement)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AdditionalRequirement, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AdditionalRequirement)
-                @Html.ValidationMessageFor(model => model.AdditionalRequirement)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfVacancies, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberOfVacancies)
-                @Html.ValidationMessageFor(model => model.NumberOfVacancies)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SalaryRange, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SalaryRange)
-                @Html.ValidationMessageFor(model => model.SalaryRange)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OtherBenefit, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OtherBenefit)
-                @Html.ValidationMessageFor(model => model.OtherBenefit)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishTime)
-                @Html.ValidationMessageFor(model => model.PublishTime)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ApplicationDeadline, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ApplicationDeadline)
-                @Html.ValidationMessageFor(model => model.ApplicationDeadline)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Approval, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Approval)
-                @Html.ValidationMessageFor(model => model.Approval)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        }
+        <p>Post your job circular with all the essential detail information </p>
     </div>
-}
+</header>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+
+
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm(new {@class = "form-light mt-20", @role = "form"}))
+        {
+            <h3 class="section-title">Enter All Required Job Information</h3>
+            <div class="col-md-8">
+                
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Position Name</label>
+                            @Html.TextBoxFor(model => model.JobTitle, new { @class = "form-control", placeholder = "Position Name" })
+                            @Html.ValidationMessageFor(model => model.JobTitle)
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control", placeholder = "Company Name" })
+                            @Html.ValidationMessageFor(model => model.JobNature)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Job Requirement / Responsibility</label>
+                    @Html.TextAreaFor(model => model.JobRequirement, new {@class = "form-control", placeholder = "Write All Job Requirements Here...", style = "height: 100px"})
+                    @Html.ValidationMessageFor(model => model.JobRequirement)
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Educational Requirement</label>
+                            @Html.TextBoxFor(model => model.EducationalRequirement, new { @class = "form-control", placeholder = "Educational Requirements" })
+                            @Html.ValidationMessageFor(model => model.EducationalRequirement)
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Experience Requirement</label>
+                            @Html.TextBoxFor(model => model.ExperienceRequirement, new { @class = "form-control", placeholder = "Educational Requirements" })
+                            @Html.ValidationMessageFor(model => model.ExperienceRequirement)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Number Of Vacancies</label>
+                            @Html.TextBoxFor(model => model.NumberOfVacancies, new { @class = "form-control", @type = "number", placeholder = "Vacancies Number"})
+                            @Html.ValidationMessageFor(model => model.NumberOfVacancies)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Job Nature</label>
+                            @Html.TextBoxFor(model => model.JobNature, new { @class = "form-control", placeholder = "Job Nature" })
+                            @Html.ValidationMessageFor(model => model.JobNature)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Other Benefits</label>
+                    @Html.TextAreaFor(model => model.OtherBenefit, new {@class = "form-control", placeholder = "Write Other Benefits Here...", style = "height: 100px"})
+                    @Html.ValidationMessageFor(model => model.OtherBenefit)
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Salary Range</label>
+                            @Html.TextBoxFor(model => model.SalaryRange, new { @class = "form-control", placeholder = "Salary Range" })
+                            @Html.ValidationMessageFor(model => model.SalaryRange)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Application Deadline</label>
+                            @Html.TextBoxFor(model => model.ApplicationDeadline, new { @class = "form-control", @type = "date" })
+                            @Html.ValidationMessageFor(model => model.ApplicationDeadline)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-two">Post Job</button>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

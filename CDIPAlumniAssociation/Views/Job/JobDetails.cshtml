@@ -1,0 +1,108 @@
+﻿@using CDIPAlumniAssociation.Models
+
+@{
+    ViewBag.Title = "JobDetails";
+    var jobs = ViewBag.jobs;
+    var currentJobOwnerId = ViewBag.CurrentJobOwnerId;
+
+    dynamic user = Session["user"] as User;
+}
+
+<header id="head" class="secondary">
+    
+    <div class="container">
+        <h1>@jobs.JobTitle at @jobs.CompanyName</h1>
+        
+    </div>
+
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="section-title" style="border-left: 10px solid green; background-color: #4285F4; padding: 10px; color: #fefbd8;">Job Details Information</h2>
+            <div class="contact-info">
+                <h4>Position</h4>
+                <p>@jobs.JobTitle</p>
+
+                <h4>Company Name</h4>
+                <p>@jobs.CompanyName</p>
+
+                <h4>Job Requirement / Responsibility</h4>
+                <p>@Html.Raw(jobs.JobRequirement.Replace(Environment.NewLine, "<br/>"))</p>
+
+                <h4>Educational Requirement</h4>
+                <p>@jobs.EducationalRequirement</p>
+
+                <h4>Experience Requirement</h4>
+                <p>@jobs.ExperienceRequirement</p>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <h2 class="section-title" style="border-left: 10px solid green; background-color: #4285F4; padding: 10px; color: #fefbd8;">Job Summary</h2>
+            <div class="contact-info">
+                <h4>Number Of Vacancies</h4>
+                <p>@jobs.NumberOfVacancies</p>
+
+                <h4>Job Nature</h4>
+                <p>@jobs.JobNature</p>
+
+                <h4>Other Benefits</h4>
+                <p>@Html.Raw(jobs.OtherBenefit.Replace(Environment.NewLine, "<br/>"))</p>
+
+                <h4>Salary Range</h4>
+                <p>@jobs.SalaryRange</p>
+
+                <h4>PublishTime</h4>
+                <p>@jobs.PublishTime</p>
+
+                <h4>Application Deadline</h4>
+                <p>@jobs.ApplicationDeadline</p>
+            </div>
+
+            @if (user == null)
+            {
+                <hr>
+                <h3 style="color: #4285F4;">Login Your Account to apply for this job</h3>
+            }
+            else if (currentJobOwnerId == user.Id)
+            {
+                <hr>
+                <h3 style="color: #4285F4;">You Can Not Apply Your Own Posted Job!! Please Apply another one ...</h3>
+            }
+            else
+            {
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-two" onclick="location.href='@Url.Action("ApplyJobs", "Job", new { id = jobs.Id})';return false;">Apply This Job</button>
+                    </div>
+                </div>
+                
+            }
+
+            @if (user != null && user.CurrentJobInfo != null)
+            {
+                <hr>
+                <div class="form-group">
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-two" onclick="location.href='@Url.Action("Create", "Job")';return false;">Post New Job</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+   
+
+    
+
+    
+</div>
+

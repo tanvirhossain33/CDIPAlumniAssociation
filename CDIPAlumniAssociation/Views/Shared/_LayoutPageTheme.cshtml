@@ -54,10 +54,15 @@
                     <li><a href="@Url.Action("Create", "Alumni")">Alumni Directory</a></li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Job Infos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
+
+                            @if (user != null && user.CurrentJobInfo != null)
+                            {
+                                <li><a href="@Url.Action("Create", "Job")">Post New Jobs</a></li>
+                            }
+
+                            <li><a href="@Url.Action("ViewAllPostedJob", "Job")">View All Posted Job</a></li>
                             <li><a href="#">Dummy Link2</a></li>
                             <li><a href="#">Dummy Link3</a></li>
                         </ul>
@@ -70,8 +75,22 @@
                     }
                     else
                     {
-                        @*<li><a href="@Url.Action("Create", "Account")">Register</a></li>*@
-                        <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+
+                        if (user.CurrentJobInfo != null)
+                        {
+                            
+                        }
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.Name <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">View Profile</a></li>
+                                <li><a href="#">Manage Profile </a></li>
+                                <li><a href="@Url.Action("Logout", "Account")">Log out</a></li>
+                            </ul>
+                        </li>
                     }
 
 

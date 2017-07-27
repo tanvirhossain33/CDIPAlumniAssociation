@@ -15,102 +15,152 @@ namespace CDIPAlumniAssociation.Controllers
     {
         private ApplicationContext db = new ApplicationContext();
 
-        
-        public ActionResult Index()
-        {
-            return View(db.JobInfos.ToList());
-        }
-
-        
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            JobInfo jobinfo = db.JobInfos.Find(id);
-            if (jobinfo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(jobinfo);
-        }
-
-        
         public ActionResult Create()
         {
+            var registerUser = Session["user"] as User;
+
+            if (registerUser == null)
+            {
+                RedirectToAction("index", "Home");
+            }
+
+
+            ViewBag.Message = null;
             return View();
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,JobTitle,JobNature,EducationalRequirement,ExperienceRequirement,AdditionalRequirement,NumberOfVacancies,SalaryRange,OtherBenefit,PublishTime,ApplicationDeadline,Approval")] JobInfo jobinfo)
+        public ActionResult Create(JobInfo jobinfo)
         {
-            if (ModelState.IsValid)
+            var registerUser = Session["user"] as User;
+
+            var job = new JobInfo()
             {
-                db.JobInfos.Add(jobinfo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                JobTitle = jobinfo.JobTitle,
+                JobNature = jobinfo.JobNature,
+                EducationalRequirement = jobinfo.EducationalRequirement,
+                ExperienceRequirement = jobinfo.ExperienceRequirement,
+                JobRequirement = jobinfo.JobRequirement,
+                NumberOfVacancies = jobinfo.NumberOfVacancies,
+                SalaryRange = jobinfo.SalaryRange,
+                OtherBenefit = jobinfo.OtherBenefit,
+                PublishTime = DateTime.Today,
+                ApplicationDeadline = jobinfo.ApplicationDeadline,
+                Approval = true,
+                CompanyName = jobinfo.CompanyName
+            };
+
+            db.JobInfos.Add(job);
+            
+            var rowChanged = db.SaveChanges();
+
+            if (rowChanged > 0)
+            {
+
+                var userJobPostedInfo = new UserJobPostedInfo()
+                {
+                    JobInfoId = job.Id,
+                    UserId = registerUser.Id
+                };
+
+                db.UserJobPostedInfos.Add(userJobPostedInfo);
+                var changedRow = db.SaveChanges();
+                if (changedRow > 0)
+                {
+                    ViewBag.Message = "Job Posted  successfully";
+                }
+                else
+                {
+                    ViewBag.Message = "Job Post not  successful ! Please try again ...";
+                }
+                
+            }
+            else
+            {
+                ViewBag.Message = "Job Post not  successful ! Please try again ...";
             }
 
             return View(jobinfo);
         }
 
-       
-        public ActionResult Edit(int? id)
+        public ActionResult ViewAllPostedJob()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            JobInfo jobinfo = db.JobInfos.Find(id);
-            if (jobinfo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(jobinfo);
+            var jobs = db.JobInfos.ToList();
+
+            ViewBag.Jobs = jobs;
+
+            return View();
         }
 
-        
+        public ActionResult JobDetails(int id)
+        {
+            var jobs = db.JobInfos.Find(id);
+
+            var identity = db.UserJobPostedInfos.First(c => c.JobInfoId == id);
+
+            ViewBag.CurrentJobOwnerId = identity.UserId;
+
+            ViewBag.jobs = jobs;
+
+            return View();
+        }
+
+
+        public ActionResult ApplyJobs(int id)
+        {
+            var registerUser = Session["user"] as User;
+
+            var identity = db.UserJobPostedInfos.First(c => c.JobInfoId == id);
+
+            if (registerUser != null && registerUser.Id != identity.UserId)
+            {
+                var jobs = db.JobInfos.First(c => c.Id == id);
+
+                ViewBag.Jobs = jobs;
+                ViewBag.Message = null;
+            }
+            else
+            {
+                return RedirectToAction("JobDetails", new {id = id});
+            }
+            
+            return View();
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,JobTitle,JobNature,EducationalRequirement,ExperienceRequirement,AdditionalRequirement,NumberOfVacancies,SalaryRange,OtherBenefit,PublishTime,ApplicationDeadline,Approval")] JobInfo jobinfo)
+        public ActionResult ApplyJobs(AppliedJobInfo appliedJobInfo, int id)
         {
-            if (ModelState.IsValid)
+            var registerUser = Session["user"] as User;
+            AppliedJobInfo application = new AppliedJobInfo()
             {
-                db.Entry(jobinfo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                CoverLetter = appliedJobInfo.CoverLetter,
+                ExpectedSalary = appliedJobInfo.ExpectedSalary,
+                AppliedTime = DateTime.Today,
+                JobInfoId = id,
+                UserId = registerUser.Id
+            };
+
+            db.AppliedJobInfos.Add(application);
+
+            var rowChange = db.SaveChanges();
+
+            if (rowChange > 0)
+            {
+                ViewBag.Message = "congratulation, Your Job Application Successful..";
             }
-            return View(jobinfo);
+            else
+            {
+                ViewBag.Message = "Application Unsuccessful !! Please try again...";
+            }
+
+            var jobs = db.JobInfos.First(c => c.Id == id);
+            ViewBag.Jobs = jobs;
+
+            return View();
         }
 
-        
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            JobInfo jobinfo = db.JobInfos.Find(id);
-            if (jobinfo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(jobinfo);
-        }
-
-        
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            JobInfo jobinfo = db.JobInfos.Find(id);
-            db.JobInfos.Remove(jobinfo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

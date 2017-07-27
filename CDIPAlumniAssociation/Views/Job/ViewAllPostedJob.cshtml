@@ -1,0 +1,89 @@
+﻿@using System.Globalization
+
+@{
+    ViewBag.Title = "ViewAllPostedJob";
+    var jobs = ViewBag.Jobs;
+}
+
+<header id="head" class="secondary">
+    @if (jobs != null)
+    {
+        <div class="container">
+            <h1>View All Posted Job</h1>
+            <p>View all job circular which coequal your criteria and click Detail to view with all the essential detail information </p>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <h1>No Jobs Posted Yet</h1>
+            
+        </div>
+    }
+
+    
+</header>
+
+<div class="container" style="padding-top: 20px;">
+
+    @if (jobs != null)
+    {
+        <div class="row">
+            <table id="myTable" class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Company Name</th>
+                        <th>Experience</th>
+                        <th>Deadline</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Position</th>
+                        <th>Company Name</th>
+                        <th>Experience</th>
+                        <th>Deadline</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in jobs)
+                    {
+                        <tr>
+                            <th>@item.JobTitle</th>
+                            <td>@item.CompanyName</td>
+                            <td>@item.ExperienceRequirement</td>
+                            <td>@item.ApplicationDeadline.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</td>
+                            <td>@Html.ActionLink("Details", "JobDetails", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Content/Theme_Assets/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Theme_Assets/DataTables/dataTables.bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#myTable').DataTable({ responsive: true });
+
+            });
+
+    </script>
+
+
+
+}
+

@@ -12,12 +12,17 @@ namespace CDIPAlumniAssociation.Models
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Cover Letter")]
         public string CoverLetter { get; set; }
 
         [Required]
+        [Display(Name = "Expected Salary")]
         public int ExpectedSalary { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-mm-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime AppliedTime { get; set; }
 
         public int JobInfoId { get; set; }

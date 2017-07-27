@@ -36,7 +36,7 @@ namespace CDIPAlumniAssociation.Controllers
         {
             
 
-            var any = db.Users.Any(c => c.Email == user.UserName && c.Password == user.Password);
+            var any = db.Users.Any(c => c.Email == user.UserName && c.Password == user.Password && c.Approval == true);
 
             if (any)
             {
@@ -44,14 +44,14 @@ namespace CDIPAlumniAssociation.Controllers
 
                 Session["user"] = new User()
                 {
-                    Id = user.Id,
-                    StudentId = user.StudentId,
-                    Name = user.Name,
-                    Address = user.Address,
-                    MobileNo = user.MobileNo,
-                    Email = user.Email,
-                    Password = user.Password,
-                    CurrentJobInfo = user.CurrentJobInfo
+                    Id = userInfo.Id,
+                    StudentId = userInfo.StudentId,
+                    Name = userInfo.Name,
+                    Address = userInfo.Address,
+                    MobileNo = userInfo.MobileNo,
+                    Email = userInfo.Email,
+                    Password = userInfo.Password,
+                    CurrentJobInfo = userInfo.CurrentJobInfo
                 };
 
                 return RedirectToAction("Index", "Home");
@@ -140,6 +140,12 @@ namespace CDIPAlumniAssociation.Controllers
 
         public ActionResult Logout()
         {
+            var registerUser = Session["user"] as User;
+            if (registerUser == null)
+            {
+                RedirectToAction("index", "Home");
+            }
+
             Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

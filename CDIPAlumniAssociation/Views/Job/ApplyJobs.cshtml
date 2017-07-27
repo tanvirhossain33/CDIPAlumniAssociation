@@ -1,0 +1,82 @@
+﻿@model CDIPAlumniAssociation.Models.AppliedJobInfo
+@{
+    ViewBag.Title = "Job Application";
+    var message = ViewBag.Message;
+    var jobs = ViewBag.Jobs;
+}
+
+<header id="head" class="secondary">
+    <div class="container">
+        @if (message == null)
+        {
+            <h1>Apply for This Job</h1>
+        }
+        else
+        {
+            if (message == "congratulation, Your Job Application Successful..")
+            {
+                <h1 style="color: greenyellow">@message</h1>
+            }
+            else
+            {
+                <h1 style="color: red">@message</h1>
+            }
+
+        }
+        <p>Apply Selected job with all the essential detail information </p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm(new { @class = "form-light mt-20", @role = "form" }))
+        {
+            <div class="col-md-8">
+                <h2 class="section-title" style="border-left: 10px solid green; background-color: #4285F4; padding: 10px; color: #fefbd8;">Enter All Required Information</h2>
+
+                <h3>Position</h3>
+                <p><b>@jobs.JobTitle</b></p>
+
+                <h3>Company Name</h3>
+                <p><b>@jobs.CompanyName</b></p>
+
+                <hr>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                
+                <div class="form-group">
+                    <label>Cover Letter</label>
+                    @Html.TextAreaFor(model => model.CoverLetter, new { @class = "form-control", placeholder = "Write a Cover Letter Here...", style = "height: 100px" })
+                    @Html.ValidationMessageFor(model => model.CoverLetter)
+                </div>
+
+                <div class="form-group">
+                    <label>Expected Salary Monthly (TK)</label>
+                    @Html.TextBoxFor(model => model.ExpectedSalary, new { @class = "form-control", @type = "number", placeholder = "Expected Salary" })
+                    @Html.ValidationMessageFor(model => model.ExpectedSalary)
+                </div>
+
+            </div>
+
+            
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-two"><b>Apply</b></button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

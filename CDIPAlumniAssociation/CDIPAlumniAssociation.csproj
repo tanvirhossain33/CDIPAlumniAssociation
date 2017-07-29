@@ -507,7 +507,9 @@
     <Content Include="Content\Theme_Assets\DataTables\css\common.scss" />
     <Content Include="Content\Theme_Assets\DataTables\css\mixins.scss" />
     <Content Include="Content\Theme_Assets\DataTables\css\semanticui.scss" />
+    <None Include="Properties\PublishProfiles\cdipalumni - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\cdipalumni - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\cdipalumni - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\cdipalumni - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

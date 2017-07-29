@@ -99,16 +99,18 @@ namespace CDIPAlumniAssociation.Controllers
         {
             var registerUser = Session["user"] as User;
 
-            var appliedForThisJob = db.AppliedJobInfos.FirstOrDefault(c => c.UserId == registerUser.Id && c.JobInfoId == id);
-
             var jobs = db.JobInfos.Find(id);
 
             var identity = db.UserJobPostedInfos.First(c => c.JobInfoId == id);
 
             ViewBag.CurrentJobOwnerId = identity.UserId;
             ViewBag.jobs = jobs;
-
-            ViewBag.AppliedForThisJob = appliedForThisJob;
+            if (registerUser != null)
+            {
+                var appliedForThisJob = db.AppliedJobInfos.FirstOrDefault(c => c.UserId == registerUser.Id && c.JobInfoId == id);
+                ViewBag.AppliedForThisJob = appliedForThisJob;
+            }
+            
 
             return View();
         }

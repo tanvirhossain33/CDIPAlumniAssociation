@@ -4,6 +4,7 @@
     ViewBag.Title = "JobDetails";
     var jobs = ViewBag.jobs;
     var currentJobOwnerId = ViewBag.CurrentJobOwnerId;
+     var appliedForThisJob = ViewBag.AppliedForThisJob;
 
     dynamic user = Session["user"] as User;
 }
@@ -76,12 +77,24 @@
             }
             else
             {
-                <hr>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button class="btn btn-two" onclick="location.href='@Url.Action("ApplyJobs", "Job", new { id = jobs.Id})';return false;">Apply This Job</button>
+
+
+                if (appliedForThisJob != null)
+                {
+                    <hr>
+                    <h3 style="color: #4285F4;">You have already applied for this job !!</h3>
+                }
+                else
+                {
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button class="btn btn-two" onclick="location.href='@Url.Action("ApplyJobs", "Job", new { id = jobs.Id})';return false;">Apply This Job</button>
+                        </div>
                     </div>
-                </div>
+                }
+                
+                
                 
             }
 

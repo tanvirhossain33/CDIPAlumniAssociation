@@ -21,7 +21,7 @@ namespace CDIPAlumniAssociation.Controllers
 
             if (registerUser == null)
             {
-                RedirectToAction("index", "Home");
+                return RedirectToAction("index", "Home");
             }
 
 
@@ -90,19 +90,25 @@ namespace CDIPAlumniAssociation.Controllers
             var jobs = db.JobInfos.ToList();
 
             ViewBag.Jobs = jobs;
+            ViewBag.JobCount = jobs.Count;
 
             return View();
         }
 
         public ActionResult JobDetails(int id)
         {
+            var registerUser = Session["user"] as User;
+
+            var appliedForThisJob = db.AppliedJobInfos.FirstOrDefault(c => c.UserId == registerUser.Id && c.JobInfoId == id);
+
             var jobs = db.JobInfos.Find(id);
 
             var identity = db.UserJobPostedInfos.First(c => c.JobInfoId == id);
 
             ViewBag.CurrentJobOwnerId = identity.UserId;
-
             ViewBag.jobs = jobs;
+
+            ViewBag.AppliedForThisJob = appliedForThisJob;
 
             return View();
         }
@@ -160,6 +166,26 @@ namespace CDIPAlumniAssociation.Controllers
 
             return View();
         }
+
+        public ActionResult PersonalJobApplication()
+        {
+
+            var registerUser = Session["user"] as User;
+
+            if (registerUser != null)
+            {
+                var jobs = db.AppliedJobInfos.Where(c => c.UserId == registerUser.Id).ToList();
+                ViewBag.Jobs = jobs;
+                ViewBag.JobCount = jobs.Count;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
+
+            return View();
+        } 
 
 
         protected override void Dispose(bool disposing)

@@ -24,7 +24,7 @@ namespace CDIPAlumniAssociation.Controllers
 
             if (registerUser != null)
             {
-                RedirectToAction("index", "Home");
+                return RedirectToAction("index", "Home");
             }
 
             ViewBag.Message = null;
@@ -70,7 +70,7 @@ namespace CDIPAlumniAssociation.Controllers
 
             if (registerUser != null)
             {
-                RedirectToAction("index", "Home");
+                return RedirectToAction("index", "Home");
             }
 
             ViewBag.Programs = db.Programs.ToList();
@@ -140,12 +140,6 @@ namespace CDIPAlumniAssociation.Controllers
 
         public ActionResult Logout()
         {
-            var registerUser = Session["user"] as User;
-            if (registerUser == null)
-            {
-                RedirectToAction("index", "Home");
-            }
-
             Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
@@ -167,11 +161,7 @@ namespace CDIPAlumniAssociation.Controllers
             return Json(!db.Users.Any(c => c.Email == email), JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult IsEmailRegistered(string email)
-        //{
-            
-        //    return Json(db.Users.Any(c => c.Email == email), JsonRequestBehavior.AllowGet);
-        //}
+        
 
 
         [HttpPost]

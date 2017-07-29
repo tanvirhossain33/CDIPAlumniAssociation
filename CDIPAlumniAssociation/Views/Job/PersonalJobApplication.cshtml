@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 
 @{
-    ViewBag.Title = "ViewAllPostedJob";
+    ViewBag.Title = "PersonalJobApplication";
     var jobs = ViewBag.Jobs;
     var jobCount = ViewBag.JobCount;
 }
@@ -10,19 +10,19 @@
     @if (jobCount > 0)
     {
         <div class="container">
-            <h1>View All Posted Job</h1>
-            <p>View all job circular which coequal your criteria and click Detail to view with all the essential detail information </p>
+            <h1>View Your Applied Job</h1>
+            <p>View all Your applied jobs with all the essential detail information </p>
         </div>
     }
     else
     {
         <div class="container">
-            <h1>No Jobs Posted Yet</h1>
-            
+            <h1>No Jobs Applied Yet</h1>
+
         </div>
     }
 
-    
+
 </header>
 
 <div class="container" style="padding-top: 20px;">
@@ -35,8 +35,8 @@
                     <tr>
                         <th>Position</th>
                         <th>Company Name</th>
-                        <th>Experience</th>
-                        <th>Deadline</th>
+                        <th>Applied Time</th>
+                        <th>Your Expected Salary</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -44,8 +44,8 @@
                     <tr>
                         <th>Position</th>
                         <th>Company Name</th>
-                        <th>Experience</th>
-                        <th>Deadline</th>
+                        <th>Applied Time</th>
+                        <th>Your Expected Salary</th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -53,11 +53,11 @@
                     @foreach (var item in jobs)
                     {
                         <tr>
-                            <th>@item.JobTitle</th>
-                            <td>@item.CompanyName</td>
-                            <td>@item.ExperienceRequirement</td>
-                            <td>@item.ApplicationDeadline.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</td>
-                            <td>@Html.ActionLink("Details", "JobDetails", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                            <th>@item.JobInfo.JobTitle</th>
+                            <td>@item.JobInfo.CompanyName</td>
+                            <td>@item.AppliedTime.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</td>
+                            <td>@item.ExpectedSalary</td>
+                            <td>@Html.ActionLink("Job Details", "JobDetails", new { id = item.JobInfoId }, new { @class = "btn btn-info" })</td>
                         </tr>
                     }
 

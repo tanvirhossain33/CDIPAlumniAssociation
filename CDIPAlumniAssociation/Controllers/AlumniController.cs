@@ -92,7 +92,7 @@ namespace CDIPAlumniAssociation.Controllers
                     else
                     {
                         fileName = userId + fileType;
-                        var path = Path.Combine(Server.MapPath("~/App_Data/Resume"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Resume"), fileName);
                         file.SaveAs(path);
                         ViewBag.message = "Resume uploaded successfully";
                     }
@@ -138,7 +138,7 @@ namespace CDIPAlumniAssociation.Controllers
             string name = session.Name;
             var fileName = name + ".pdf";
 
-            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/App_Data/Resume/"));
+            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/Content/Resume"));
             System.IO.FileInfo[] fileNames = dir.GetFiles(userId + ".pdf");
 
 
@@ -151,7 +151,7 @@ namespace CDIPAlumniAssociation.Controllers
             }
             else
             {
-                var data = File("~/App_Data/Resume/" + userId + ".pdf", System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                var data = File("~/Content/Resume" + userId + ".pdf", System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
                 return data;
             }
             
@@ -170,7 +170,7 @@ namespace CDIPAlumniAssociation.Controllers
 
             var fileName = userId + ".pdf";
 
-            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/App_Data/Resume/"));
+            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/Content/Resume"));
             System.IO.FileInfo[] fileNames = dir.GetFiles(userId + ".pdf");
 
             if (fileNames.Length == 0)

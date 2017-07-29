@@ -99,7 +99,7 @@ namespace CDIPAlumniAssociation.Controllers
                     if (fileType == ".png" || fileType == ".jpeg" || fileType == ".jpg" || fileType == ".gif")
                     {
                         fileName = user.Email + fileType;
-                        var path = Path.Combine(Server.MapPath("~/UserImage"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/UserImage"), fileName);
                         file.SaveAs(path);
                         saveConfirm = 1;
                     }

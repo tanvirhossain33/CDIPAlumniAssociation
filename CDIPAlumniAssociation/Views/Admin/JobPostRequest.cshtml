@@ -1,0 +1,117 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "JobPostedRequest";
+    dynamic jobs = ViewBag.Jobs;
+    dynamic message = ViewBag.Message;
+}
+
+<header id="head" class="secondary">
+    <div class="container">
+        @if (message == "")
+        {
+            <h1>Job Posted Request</h1>
+        }
+        else if (message != "No Job Approved Yet !!")
+        {
+            <h1 style="color: greenyellow">@message</h1>
+        }
+        else
+        {
+            <h1 style="color: red">@message</h1>
+        }
+
+    </div>
+</header>
+
+
+<div class="container" style="padding-top: 20px;">
+
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            if (jobs != null)
+            {
+                <div class="row">
+                    <table id="myTable" class="table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Company Name</th>
+                                <th>Experience</th>
+                                <th>Deadline</th>
+                                <th>Select Job</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Position</th>
+                                <th>Company Name</th>
+                                <th>Experience</th>
+                                <th>Deadline</th>
+                                <th>Select Job</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in jobs)
+                            {
+                                <tr>
+                                    <th>@item.JobTitle</th>
+                                    <td>@item.CompanyName</td>
+                                    <td>@item.ExperienceRequirement</td>
+                                    <td>@item.ApplicationDeadline.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</td>
+
+                                    <td>
+                                        <input type="checkbox" name="approvals" value=@item.Id />
+                                    </td>
+                                    <td> @Html.ActionLink("Details", "JobDetails", "Job", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-two">Approve Selected User</button>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Content/Theme_Assets/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Theme_Assets/DataTables/dataTables.bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#myTable').DataTable({ responsive: true });
+
+            });
+
+    </script>
+
+
+
+}
+

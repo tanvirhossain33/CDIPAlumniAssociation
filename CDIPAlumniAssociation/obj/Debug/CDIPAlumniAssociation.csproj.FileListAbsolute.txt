@@ -59,3 +59,126 @@ C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIP
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V4.resources
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V5.resources
 C:\Users\Tanvir\Documents\Visual Studio 2013\Projects\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.csprojResolveAssemblyReference.cache
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.dll.config
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.pdb
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Antlr3.Runtime.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.SqlServer.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Google.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Web.Infrastructure.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Newtonsoft.Json.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Owin.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Helpers.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Mvc.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Optimization.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Razor.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Deployment.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Razor.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\WebGrease.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Helpers.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Mvc.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Optimization.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Razor.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Deployment.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Razor.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Newtonsoft.Json.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Antlr3.Runtime.pdb
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.SqlServer.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Google.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.csprojResolveAssemblyReference.cache
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V1.resources
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V2.resources
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V3.resources
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V4.resources
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V5.resources
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.csproj.GenerateResource.Cache
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.dll
+D:\Final Project\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.pdb
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.dll.config
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\CDIPAlumniAssociation.pdb
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Antlr3.Runtime.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.SqlServer.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Newtonsoft.Json.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Owin.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Helpers.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Mvc.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Optimization.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Razor.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Razor.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\WebGrease.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Helpers.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Mvc.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Optimization.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.Razor.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\System.Web.WebPages.Razor.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Newtonsoft.Json.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Antlr3.Runtime.pdb
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\EntityFramework.SqlServer.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.csprojResolveAssemblyReference.cache
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V1.resources
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V2.resources
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V3.resources
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V4.resources
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V5.resources
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.csproj.GenerateResource.Cache
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.dll
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.pdb
+C:\Users\Tanvir\Downloads\Compressed\CDIPAlumniAssociation\CDIPAlumniAssociation\obj\Debug\CDIPAlumniAssociation.Migrations.V6.resources

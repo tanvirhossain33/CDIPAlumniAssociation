@@ -1,4 +1,5 @@
-﻿@using CDIPAlumniAssociation.Models
+﻿@using System.Globalization
+@using CDIPAlumniAssociation.Models
 
 @{
     ViewBag.Title = "JobDetails";
@@ -59,10 +60,10 @@
                 <p>@jobs.SalaryRange</p>
 
                 <h4>PublishTime</h4>
-                <p>@jobs.PublishTime</p>
+                <p>@jobs.PublishTime.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</p>
 
                 <h4>Application Deadline</h4>
-                <p>@jobs.ApplicationDeadline</p>
+                <p>@jobs.ApplicationDeadline.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</p>
             </div>
 
             @if (user == null)
@@ -89,9 +90,10 @@
                     <hr>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-two" onclick="location.href='@Url.Action("ApplyJobs", "Job", new { id = jobs.Id})';return false;">Apply This Job</button>
+                            <button class="btn btn-two" onclick="location.href = '@Url.Action("ApplyJobs", "Job", new {id = jobs.Id})';return false;">Apply This Job</button>
                         </div>
                     </div>
+                    <hr>
                 }
                 
                 

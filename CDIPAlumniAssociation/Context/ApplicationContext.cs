@@ -19,5 +19,7 @@ namespace CDIPAlumniAssociation.Context
 
         public DbSet<Gender> Genders { get; set; }
 
+        public DbSet<Admin> Admins { get; set; }
+
     }
 }

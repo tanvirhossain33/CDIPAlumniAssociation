@@ -4,6 +4,9 @@
 @{
 
     dynamic user = Session["user"] as User;
+
+    dynamic admin = Session["admin"];
+    
     
 }
 
@@ -45,7 +48,7 @@
                 <!-- Button for smallest screens -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    <img src="~/Content/Theme_Assets/images/logo.png" alt="CDIP Anumni Association">
+                    <img src="~/Content/Theme_Assets/images/cdip.png" alt="CDIP Anumni Association">
                 </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -57,57 +60,85 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Job Infos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
 
-                            
-
                             @if (user != null && user.CurrentJobInfo != null)
                             {
                                 <li><a href="@Url.Action("Create", "Job")">Post New Jobs</a></li>
+                                <li><a href="@Url.Action("PersonalPostedJob", "Job")">Your Posted Job</a></li>
                             }
 
                             @if (user != null)
                             {
-                                <li><a href="@Url.Action("PersonalJobApplication", "Job")">Your Job Application</a></li>
+                                if (admin == false)
+                                {
+                                    <li><a href="@Url.Action("PersonalJobApplication", "Job")">Your Job Application</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Create", "Job")">Post New Jobs</a></li>
+                                    <li><a href="@Url.Action("PersonalPostedJob", "Job")">Your Posted Job</a></li>
+                                }
+                                
+                                
                             }
 
                             <li><a href="@Url.Action("ViewAllPostedJob", "Job")">View All Posted Job</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
                         </ul>
                     </li>
 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student Project<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://cdip.uiu.ac.bd/portfolio_cat/laravel/">Laravel Project</a></li>
+                            <li><a href="http://cdip.uiu.ac.bd/portfolio_cat/graphic-design/">Graphic Design Project</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="http://cdip.uiu.ac.bd/">CDIP</a></li>
+
                     @if (user == null)
                     {
+                        
                         <li><a href="@Url.Action("Create", "Account")">Register</a></li>
                         <li><a href="@Url.Action("Login", "Account")">Login</a></li>
                     }
                     else
                     {
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resume<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-
-                                <li><a href="@Url.Action("UploadResume", "Alumni")">Upload Resume</a></li>
-                                <li><a href="@Url.Action("DisplayPDF", "Alumni")">View Resume</a></li>
-                                <li><a href="@Url.Action("DownloadResume", "Alumni")">Download Resume</a></li>
-                            </ul>
-                        </li>
-
-                        if (user.CurrentJobInfo != null)
+                        if (admin == false)
                         {
-                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resume<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+
+                                    <li><a href="@Url.Action("UploadResume", "Alumni")">Upload Resume</a></li>
+                                    <li><a href="@Url.Action("DisplayPDF", "Alumni", new {id = user.Id})">View Resume</a></li>
+                                    <li><a href="@Url.Action("DownloadResume", "Alumni", new {id = user.Id})">Download Resume</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.Name <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("UpdateJobStatus", "Admin")">Update Job Status</a></li>
+                                    <li><a href="@Url.Action("ChangePassword", "Admin")">Change Password </a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")">Log out</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.Name <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("AccountRegistrationRequest", "Admin")">Account Registration Request</a></li>
+                                    <li><a href="@Url.Action("JobPostRequest", "Admin")">Job Post Request</a></li>
+                                    <li><a href="@Url.Action("AddAdmin", "Admin")">Create New Admin </a></li>
+                                    <li><a href="@Url.Action("ChangePassword", "Admin")">Change Password </a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")">Log out</a></li>
+                                </ul>
+                            </li>
                         }
                         
                         
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.Name <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Settings</a></li>
-                                <li><a href="#">View Profile</a></li>
-                                <li><a href="#">Manage Profile </a></li>
-                                <li><a href="@Url.Action("Logout", "Account")">Log out</a></li>
-                            </ul>
-                        </li>
                     }
 
 
@@ -129,105 +160,55 @@
                 <div class="footerbottom">
                     <div class="col-md-3 col-sm-6">
                         <div class="footerwidget">
-                            <h4>
-                                Course Categories
-                            </h4>
-                            <div class="menu-course">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            List of Technology
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            List of Business
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            List of Photography
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            List of Language
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footerwidget">
-                            <h4>
-                                Products Categories
-                            </h4>
-                            <div class="menu-course">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            Individual Plans
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Business Plans
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Free Trial
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Academic
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footerwidget">
-                            <h4>
-                                Browse by Categories
-                            </h4>
-                            <div class="menu-course">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            All Courses
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            All Instructors
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            All Members
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            All Groups
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footerwidget">
-                            <h4>Contact</h4>
-                            <p>Lorem reksi this dummy text unde omnis iste natus error sit volupum</p>
+                            <h4>Contact Us</h4>
+                            <p>Center for development of IT Professionals (CDIP)</p>
                             <div class="contact-info">
-                                <i class="fa fa-map-marker"></i> Kerniles 416  - United Kingdom<br>
-                                <i class="fa fa-phone"></i>+00 123 156 711 <br>
-                                <i class="fa fa-envelope-o"></i> youremail@email.com
+                                <i class="fa fa-map-marker"></i> UIU Bhaban, House 80, Road 8/A (old 15), Dhanmondi, Dhaka-1209<br>
+                                <i class="fa fa-phone"></i>01936002248/01629445961<br>
+                                <i class="fa fa-envelope-o"></i> cdip@uiu.ac.bd
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footerwidget">
+                            <h4>Admission Hours</h4>
+                            <p>For Direct admission please contact with Admission Office- Ground Floor, Campus-1 (Dhanmondi 15)</p>
+                            <div class="contact-info">
+                                <i class="fa fa-clock-o"></i> Saturday - Thursday 9pm to 5pm <br>
+                                <i class="fa fa-info-circle"></i> Information: CDIP office Room: 4410<br>
+                                <i class="fa fa-user"></i> Admission Help: Saddam Hossain , Associate Instructor & Executive, CDIP.<br>
+                                <i class="fa fa-phone"></i> 01629445961<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footerwidget">
+                            <h4>For Counseling:</h4>
+                            <p><b>S.M Jabid Hasan</b></p>
+                            <div class="contact-info">
+                                <i class="fa fa-user"></i> Coordinator, CDIP & Webmaster, UIU <br>
+                                <i class="fa fa-phone"></i> 01936002248<br>
+                                <i class="fa fa-envelope-o"></i> webmaster@uiu.ac.bd <br>
+                                <i class="fa fa-info-circle"></i> Room# 4407 (South Building) <br>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footerwidget">
+                            <h4>For Counseling:</h4>
+                            <p><b>Suman Ahmmed</b></p>
+                            <div class="contact-info">
+                                
+                                <div class="contact-info">
+                                    <i class="fa fa-user"></i> Coordinator, CDIP & Webmaster, UIU <br>
+                                    <i class="fa fa-envelope-o"></i> suman@cse.uiu.ac.bd <br>
+                                    <i class="fa fa-info-circle"></i> Room# 108 (Campus-1) <br>
+
+                                </div>
+
                             </div>
                         </div><!-- end widget -->
                     </div>
@@ -253,10 +234,10 @@
                             <p class="simplenav">
                                 <a href="@Url.Action("Index", "Home")">Home</a> |
                                 <a href="@Url.Action("Create", "Alumni")">Alumni Directory</a> |
-                                <a href="courses.html">Courses</a> |
-                                <a href="price.html">Price</a> |
-                                <a href="videos.html">Videos</a> |
-                                <a href="contact.html">Contact</a>
+                                <a href="http://cdip.uiu.ac.bd/training-courses/">Courses</a> |
+                                <a href="http://cdip.uiu.ac.bd/about-us/">About</a> |
+                                <a href="http://cdip.uiu.ac.bd/category/gallery/">Gallery</a> |
+                                <a href="http://cdip.uiu.ac.bd/contact/">Contact</a>
                             </p>
                         </div>
                     </div>

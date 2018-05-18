@@ -1,0 +1,87 @@
+﻿@using System.Globalization
+
+@{
+    ViewBag.Title = "PostedJobApplication";
+    var application = ViewBag.Appliedinfo;
+    var jobCount = ViewBag.ApplicationCount;
+}
+
+<header id="head" class="secondary">
+    @if (jobCount > 0)
+    {
+        <div class="container">
+            <h1>Application for this Job</h1>
+            
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <h1>No one Applied Yet</h1>
+
+        </div>
+    }
+
+
+</header>
+
+<div class="container" style="padding-top: 20px;">
+
+    @if (jobCount > 0)
+    {
+        <div class="row">
+            <table id="myTable" class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Expected Salary</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Expected Salary</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in application)
+                    {
+                        <tr>
+                            <th>@item.User.Name</th>
+                            <td>@item.User.Email</td>
+                            <td>@item.ExpectedSalary</td>
+                            <td>@Html.ActionLink("Details", "ApplicationDetail", new { jobId = item.JobInfoId, userId = item.UserId }, new { @class = "btn btn-info" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Content/Theme_Assets/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Theme_Assets/DataTables/dataTables.bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#myTable').DataTable({ responsive: true });
+
+            });
+
+    </script>
+
+
+
+}
+

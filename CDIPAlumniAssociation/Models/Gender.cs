@@ -11,5 +11,7 @@ namespace CDIPAlumniAssociation.Models
         public string Name { get; set; }
 
         public virtual List<User> Users { get; set; }
+
+        public virtual List<Admin> Admins { get; set; }
     }
 }

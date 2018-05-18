@@ -9,25 +9,16 @@ using System.Web.Mvc;
 
 namespace CDIPAlumniAssociation.Models
 {
-    public class User
+    public class Admin
     {
         public int Id { get; set; }
-
-        [Required]
-        public string StudentId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public string Address { get; set; }
-
-        [Required]
-        public string MobileNo { get; set; }
-
-        [Required]
         [EmailAddress]
-        [Remote("IsEmailAvailable", "Account", ErrorMessage = "Email is already exists.")]
+        [Remote("IsEmailAvailable", "Admin", ErrorMessage = "Email is already exists.")]
         public string Email { get; set; }
 
         [Required]
@@ -39,32 +30,25 @@ namespace CDIPAlumniAssociation.Models
         [NotMapped]
         public string ConfirmPassword { get; set; }
 
-        //[Required]
-        [NotMapped]
-        [EmailAddress]
-        [DisplayName("Email")]
-        public string UserName { get; set; }
-
-        
-        public string CurrentJobInfo { get; set; }
-
         [Required]
-        public bool Approval { get; set; }
+        [NotMapped]
+        [DisplayName("Old Password")]
+        public string OldPassword { get; set; }
 
-        public int BatchId { get; set; }
+        //[Required]
+        //[NotMapped]
+        //[EmailAddress]
+        //[DisplayName("Email")]
+        //public string UserName { get; set; }
+
+
+
         public int GenderId { get; set; }
 
-        [ForeignKey("BatchId")]
-        public virtual Batch Batch { get; set; }
 
         [ForeignKey("GenderId")]
         public virtual Gender Gender { get; set; }
 
-        
-        public virtual List<AppliedJobInfo> AppliedJobInfos { get; set; }
-
         public virtual List<UserJobPostedInfo> UserJobPostedInfos { get; set; }
-
-        
     }
 }

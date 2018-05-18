@@ -34,9 +34,28 @@ namespace CDIPAlumniAssociation.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            
+            var admin = db.Admins.Any(c => c.Email == user.UserName && c.Password == user.Password);
+            if (admin)
+            {
+                var userInfo = db.Admins.FirstOrDefault(c => c.Email == user.UserName);
 
-            var any = db.Users.Any(c => c.Email == user.UserName && c.Password == user.Password && c.Approval == true);
+                Session["user"] = new User()
+                {
+                    Id = userInfo.Id,
+                    Name = userInfo.Name,
+                    Email = userInfo.Email,
+                    Password = userInfo.Password
+                };
+
+                Session["admin"] = true;
+
+                return RedirectToAction("Index", "Home");
+
+            }
+
+
+
+            var any = db.Users.Any(c => c.Email == user.UserName && c.Password == user.Password);
 
             if (any)
             {
@@ -53,6 +72,7 @@ namespace CDIPAlumniAssociation.Controllers
                     Password = userInfo.Password,
                     CurrentJobInfo = userInfo.CurrentJobInfo
                 };
+                Session["admin"] = false;
 
                 return RedirectToAction("Index", "Home");
                 

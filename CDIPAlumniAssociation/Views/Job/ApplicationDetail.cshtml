@@ -1,0 +1,78 @@
+﻿@using System.Globalization
+@using CDIPAlumniAssociation.Models
+
+@{
+    ViewBag.Title = "ApplicationDetail";
+
+    dynamic result = ViewBag.Result;
+    dynamic coverLetter = ViewBag.CoverLetter;
+
+    dynamic user = Session["user"] as User;
+}
+
+
+
+<header id="head" class="secondary">
+
+    <div class="container">
+        <h1> Application Details</h1>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            
+            <div class="contact-info">
+                
+
+                <h4>Name</h4>
+                <p>@result.User.Name</p>
+
+                <h4>Email</h4>
+                <p>@result.User.Email</p>
+
+                <h4>Mobile No</h4>
+                <p>@result.User.MobileNo</p>
+
+
+                @if (coverLetter == true)
+                {
+                    <h4>Cover Letter</h4>
+                    <p>@result.CoverLetter</p>
+                }
+                
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            
+            <div class="contact-info">
+
+                <h4>Expected Salary</h4>
+                <p>@result.ExpectedSalary</p>
+
+                <h4>Applied Time</h4>
+                <p>@result.AppliedTime.ToString("dd/M/yyyy", CultureInfo.InvariantCulture)</p>
+
+                <hr>
+                <button class="btn btn-two" onclick="location.href = '@Url.Action("DisplayPDF", "Alumni", new {id = result.UserId})';return false;">View Resume</button>
+                <br><br>
+                <button class="btn btn-two" onclick="location.href = '@Url.Action("DownloadResume", "Alumni", new {id = result.UserId})';return false;">Download Resume</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,79 @@
+﻿@model CDIPAlumniAssociation.Models.User
+@{
+    ViewBag.Title = "UpdateJobStatus";
+    var message = ViewBag.Message;
+    var user = ViewBag.Users;
+    var disable = ViewBag.Disable;
+}
+
+<header id="head" class="secondary">
+    <div class="container">
+        @if (message == null)
+        {
+            <h1>Update Your Job Status</h1>
+        }
+        else
+        {
+            if (message == "Job Status Update Successful..")
+            {
+                <h1 style="color: greenyellow">@message</h1>
+            }
+            else
+            {
+                <h1 style="color: red">@message</h1>
+            }
+
+        }
+        
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm(new { @class = "form-light mt-20", @role = "form" }))
+        {
+            <div class="col-md-8">
+                <h2 class="section-title" style="border-left: 10px solid green; background-color: #4285F4; padding: 10px; color: #fefbd8;">Enter All Required Information</h2>
+
+                <h3>Name</h3>
+                <p>
+                    <b>@user.Name</b>
+                </p>
+
+                <h3>Email</h3>
+                <p>
+                    <b>@user.Email</b>
+                </p>
+
+                <hr>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+
+                <div class="form-group">
+                    <label>Current Job Status</label>
+                    @Html.TextAreaFor(model => model.CurrentJobInfo, new { @class = "form-control", placeholder = "Write Your Current Job Status Here...", style = "height: 100px" })
+                    @Html.ValidationMessageFor(model => model.CurrentJobInfo)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-two"><b>Update</b></button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

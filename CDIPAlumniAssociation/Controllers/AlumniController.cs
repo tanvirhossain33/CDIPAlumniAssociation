@@ -127,15 +127,16 @@ namespace CDIPAlumniAssociation.Controllers
             return View();
         }
 
-        public ActionResult DownloadResume()
+        public ActionResult DownloadResume(int id)
         {
             var session = Session["user"] as User;
             if (session == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            int userId = session.Id;
-            string name = session.Name;
+            int userId = id;
+            var res = db.Users.First(c => c.Id == id);
+            string name = res.Name;
             var fileName = name + ".pdf";
 
             var dir = new System.IO.DirectoryInfo(Server.MapPath("~/Content/Resume"));
@@ -146,19 +147,19 @@ namespace CDIPAlumniAssociation.Controllers
 
             if (fileNames.Length == 0)
             {
-                TempData["Message"] = "Resume Not Uploaded Yet !! Please upload your Resume ..";
+                TempData["Message"] = "Resume Not Uploaded Yet !! ";
                 return RedirectToAction("ViewResume", "Alumni");
             }
             else
             {
-                var data = File("~/Content/Resume" + userId + ".pdf", System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                var data = File("~/Content/Resume/" + userId + ".pdf", System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
                 return data;
             }
             
         }
 
 
-        public ActionResult DisplayPDF()
+        public ActionResult DisplayPDF(int id)
         {
             var session = Session["user"] as User;
             if (session == null)
@@ -166,7 +167,7 @@ namespace CDIPAlumniAssociation.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            int userId = session.Id;
+            int userId = id;
 
             var fileName = userId + ".pdf";
 
@@ -175,12 +176,12 @@ namespace CDIPAlumniAssociation.Controllers
 
             if (fileNames.Length == 0)
             {
-                TempData["Message"] = "Resume Not Uploaded Yet !! Please upload your Resume ..";
+                TempData["Message"] = "Resume Not Uploaded Yet !! ";
                 return RedirectToAction("ViewResume", "Alumni");
             }
             else
             {
-                return File(dir.ToString() + userId + ".pdf", "application/pdf");
+                return File(dir.ToString() + "/" + userId + ".pdf", "application/pdf");
             }
 
             

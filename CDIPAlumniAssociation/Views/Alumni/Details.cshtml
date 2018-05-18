@@ -7,7 +7,6 @@
 <header id="head" class="secondary">
     <div class="container">
         <h1>@userDetails[0].Name</h1>
-        @*<p>Find alumni information of all programs including their contact information and current job status</p>*@
     </div>
 </header>
 
@@ -33,9 +32,9 @@
 
         <section class="col-md-6">
             <div>
-                <p>
+                @*<p>
                     <img src="~/Content/Theme_Assets/images/about.jpg" alt="" class="img-rounded pull-right" width="300">
-                </p>
+                </p>*@
 
                 <h3>Current Job Status</h3>
                 @if (userDetails[0].CurrentJobInfo != null)

@@ -35,22 +35,63 @@ namespace CDIPAlumniAssociation.Controllers
         public ActionResult Create(JobInfo jobinfo)
         {
             var registerUser = Session["user"] as User;
+            var admin = Session["admin"];
 
-            var job = new JobInfo()
+            string message = "";
+
+            var job = new JobInfo();
+            if (admin.Equals(true))
             {
-                JobTitle = jobinfo.JobTitle,
-                JobNature = jobinfo.JobNature,
-                EducationalRequirement = jobinfo.EducationalRequirement,
-                ExperienceRequirement = jobinfo.ExperienceRequirement,
-                JobRequirement = jobinfo.JobRequirement,
-                NumberOfVacancies = jobinfo.NumberOfVacancies,
-                SalaryRange = jobinfo.SalaryRange,
-                OtherBenefit = jobinfo.OtherBenefit,
-                PublishTime = DateTime.Today,
-                ApplicationDeadline = jobinfo.ApplicationDeadline,
-                Approval = true,
-                CompanyName = jobinfo.CompanyName
-            };
+                job = new JobInfo()
+                {
+                    JobTitle = jobinfo.JobTitle,
+                    JobNature = jobinfo.JobNature,
+                    EducationalRequirement = jobinfo.EducationalRequirement,
+                    ExperienceRequirement = jobinfo.ExperienceRequirement,
+                    JobRequirement = jobinfo.JobRequirement,
+                    NumberOfVacancies = jobinfo.NumberOfVacancies,
+                    SalaryRange = jobinfo.SalaryRange,
+                    OtherBenefit = jobinfo.OtherBenefit,
+                    PublishTime = DateTime.Today,
+                    ApplicationDeadline = jobinfo.ApplicationDeadline,
+                    Approval = true,
+                    CompanyName = jobinfo.CompanyName
+                };
+            }
+            else
+            {
+                job = new JobInfo()
+                {
+                    JobTitle = jobinfo.JobTitle,
+                    JobNature = jobinfo.JobNature,
+                    EducationalRequirement = jobinfo.EducationalRequirement,
+                    ExperienceRequirement = jobinfo.ExperienceRequirement,
+                    JobRequirement = jobinfo.JobRequirement,
+                    NumberOfVacancies = jobinfo.NumberOfVacancies,
+                    SalaryRange = jobinfo.SalaryRange,
+                    OtherBenefit = jobinfo.OtherBenefit,
+                    PublishTime = DateTime.Today,
+                    ApplicationDeadline = jobinfo.ApplicationDeadline,
+                    Approval = false,
+                    CompanyName = jobinfo.CompanyName
+                };
+            }
+
+            //var job = new JobInfo()
+            //{
+            //    JobTitle = jobinfo.JobTitle,
+            //    JobNature = jobinfo.JobNature,
+            //    EducationalRequirement = jobinfo.EducationalRequirement,
+            //    ExperienceRequirement = jobinfo.ExperienceRequirement,
+            //    JobRequirement = jobinfo.JobRequirement,
+            //    NumberOfVacancies = jobinfo.NumberOfVacancies,
+            //    SalaryRange = jobinfo.SalaryRange,
+            //    OtherBenefit = jobinfo.OtherBenefit,
+            //    PublishTime = DateTime.Today,
+            //    ApplicationDeadline = jobinfo.ApplicationDeadline,
+            //    Approval = false,
+            //    CompanyName = jobinfo.CompanyName
+            //};
 
             db.JobInfos.Add(job);
             
@@ -59,35 +100,59 @@ namespace CDIPAlumniAssociation.Controllers
             if (rowChanged > 0)
             {
 
-                var userJobPostedInfo = new UserJobPostedInfo()
+                if (admin.Equals(true))
                 {
-                    JobInfoId = job.Id,
-                    UserId = registerUser.Id
-                };
+                    var userJobPostedInfo = new UserJobPostedInfo()
+                    {
+                        JobInfoId = job.Id,
+                        AdminId = registerUser.Id
+                    };
 
-                db.UserJobPostedInfos.Add(userJobPostedInfo);
-                var changedRow = db.SaveChanges();
-                if (changedRow > 0)
-                {
-                    ViewBag.Message = "Job Posted  successfully";
+                    db.UserJobPostedInfos.Add(userJobPostedInfo);
+                    var changedRow = db.SaveChanges();
+                    if (changedRow > 0)
+                    {
+                        message = "Job Posted  successfully";
+                    }
+                    else
+                    {
+                        message = "Job Post not  successful ! Please try again ...";
+                    }
                 }
                 else
                 {
-                    ViewBag.Message = "Job Post not  successful ! Please try again ...";
+                    var userJobPostedInfo = new UserJobPostedInfo()
+                    {
+                        JobInfoId = job.Id,
+                        UserId = registerUser.Id
+                    };
+
+                    db.UserJobPostedInfos.Add(userJobPostedInfo);
+                    var changedRow = db.SaveChanges();
+                    if (changedRow > 0)
+                    {
+                        message = "Job Posted  successfully";
+                    }
+                    else
+                    {
+                        message = "Job Post not  successful ! Please try again ...";
+                    }
                 }
+                
                 
             }
             else
             {
-                ViewBag.Message = "Job Post not  successful ! Please try again ...";
+                message = "Job Post not  successful ! Please try again ...";
             }
 
+            ViewBag.Message = message;
             return View(jobinfo);
         }
 
         public ActionResult ViewAllPostedJob()
         {
-            var jobs = db.JobInfos.ToList();
+            var jobs = db.JobInfos.Where(c => c.Approval == true).ToList();
 
             ViewBag.Jobs = jobs;
             ViewBag.JobCount = jobs.Count;
@@ -133,7 +198,16 @@ namespace CDIPAlumniAssociation.Controllers
             {
                 return RedirectToAction("JobDetails", new {id = id});
             }
-            
+
+            if (registerUser.Approval == false)
+            {
+                ViewBag.Disable = true;
+            }
+            else
+            {
+                ViewBag.Disable = false;
+            }
+
             return View();
         }
 
@@ -182,12 +256,95 @@ namespace CDIPAlumniAssociation.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
            
 
             return View();
-        } 
+        }
+
+        public ActionResult PersonalPostedJob()
+        {
+
+            var registerUser = Session["user"] as User;
+            var admin = Session["admin"];
+
+            if (registerUser != null)
+            {
+                if (admin.Equals(true))
+                {
+                    var postedJobs = db.UserJobPostedInfos.Where(c => c.AdminId == registerUser.Id).ToList();
+                    ViewBag.Jobs = postedJobs;
+                    ViewBag.JobCount = postedJobs.Count;
+                }
+                else
+                {
+                    var postedJobs = db.UserJobPostedInfos.Where(c => c.UserId == registerUser.Id).ToList();
+                    ViewBag.Jobs = postedJobs;
+                    ViewBag.JobCount = postedJobs.Count;
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View();
+        }
+
+        public ActionResult PostedJobApplication(int id)
+        {
+            var registerUser = Session["user"] as User;
+
+            if (registerUser != null)
+            {
+                var appliedInfo = db.AppliedJobInfos.Where(c => c.JobInfoId == id).ToList();
+                ViewBag.Appliedinfo = appliedInfo;
+                ViewBag.ApplicationCount = appliedInfo.Count;
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            return View();
+        }
+
+        public ActionResult ApplicationDetail(int jobId, int userId)
+        {
+            var registerUser = Session["user"] as User;
+
+            if (registerUser != null)
+            {
+                var result = db.AppliedJobInfos.First(c => c.JobInfoId == jobId && c.UserId == userId);
+
+                //var result = db.AppliedJobInfos.Where(c => c.JobInfoId == id);
+                bool colverLetter;
+
+                if (result.CoverLetter == null)
+                {
+                    colverLetter = false;
+                }
+                else
+                {
+                    colverLetter = true;
+                }
+                
+
+                ViewBag.Result = result;
+                ViewBag.CoverLetter = colverLetter;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            
+        }
 
 
         protected override void Dispose(bool disposing)

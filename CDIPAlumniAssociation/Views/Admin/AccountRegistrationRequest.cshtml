@@ -1,0 +1,125 @@
+﻿
+
+@{
+    ViewBag.Title = "AccountRegistrationRequest";
+    dynamic user = ViewBag.User;
+    dynamic message = ViewBag.Message;
+}
+
+<header id="head" class="secondary">
+    <div class="container">
+        @if (message == "")
+        {
+            <h1>Account Registration Request</h1>
+        }
+        else if (message != "No User Approved Yet !!")
+        {
+            <h1 style="color: greenyellow">@message</h1>
+        }
+        else
+        {
+            <h1 style="color: red">@message</h1>
+        }
+
+    </div>
+</header>
+
+
+<div class="container" style="padding-top: 20px;">
+
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            if (user != null)
+            {
+                <div class="row">
+                    <table id="myTable" class="table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile No</th>
+                                <th>Email</th>
+                                <th>Current Job Status</th>
+                                <th>Select User</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile No</th>
+                                <th>Email</th>
+                                <th>Current Job Status</th>
+                                <th>Select User</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in user)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.MobileNo</td>
+                                    <td>@item.Email</td>
+                                    @if (item.CurrentJobInfo != null)
+                                    {
+                                        <th>@item.CurrentJobInfo</th>
+                                    }
+                                    else
+                                    {
+                                        <td>Not Found</td>
+                                    }
+
+                                    <td>
+                                        <input type="checkbox" name="approvals" value=@item.Id />
+                                    </td>
+                                    <td> @Html.ActionLink("Details", "Details", "Alumni", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                                    
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-two">Approve Selected User</button>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+
+    
+
+    
+
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Content/Theme_Assets/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Theme_Assets/DataTables/dataTables.bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                $('#myTable').DataTable({ responsive: true });
+
+            });
+
+    </script>
+
+
+
+}
+

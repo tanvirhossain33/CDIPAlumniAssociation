@@ -160,6 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ApplicationContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
@@ -186,7 +187,12 @@
     <Compile Include="Migrations\201707251642177_V5.Designer.cs">
       <DependentUpon>201707251642177_V5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710141244322_V6.cs" />
+    <Compile Include="Migrations\201710141244322_V6.Designer.cs">
+      <DependentUpon>201710141244322_V6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AppliedJobInfo.cs" />
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -432,14 +438,20 @@
     <Content Include="Content\Theme_Assets\images\3.png" />
     <Content Include="Content\Theme_Assets\images\4.png" />
     <Content Include="Content\Theme_Assets\images\about.jpg" />
+    <Content Include="Content\Theme_Assets\images\Animation.jpg" />
     <Content Include="Content\Theme_Assets\images\arrow.png" />
     <Content Include="Content\Theme_Assets\images\arrows.png" />
+    <Content Include="Content\Theme_Assets\images\asp.jpg" />
     <Content Include="Content\Theme_Assets\images\bg.png" />
     <Content Include="Content\Theme_Assets\images\bg_header.jpg" />
     <Content Include="Content\Theme_Assets\images\blank.gif" />
     <Content Include="Content\Theme_Assets\images\camera-loader.gif" />
     <Content Include="Content\Theme_Assets\images\camera_skins.png" />
+    <Content Include="Content\Theme_Assets\images\cdip.jpg" />
+    <Content Include="Content\Theme_Assets\images\cdip.png" />
+    <Content Include="Content\Theme_Assets\images\cdip.svg" />
     <Content Include="Content\Theme_Assets\images\favicon.png" />
+    <Content Include="Content\Theme_Assets\images\game.jpg" />
     <Content Include="Content\Theme_Assets\images\logo.png" />
     <Content Include="Content\Theme_Assets\images\news2.jpg" />
     <Content Include="Content\Theme_Assets\images\news3.jpg" />
@@ -471,6 +483,9 @@
     <Content Include="Content\Theme_Assets\images\slides\thumbs\shelter.jpg" />
     <Content Include="Content\Theme_Assets\images\slides\thumbs\tree.jpg" />
     <Content Include="Content\Theme_Assets\images\slides\thumbs\_notes\dwsync.xml" />
+    <Content Include="Content\Theme_Assets\images\slides\Tuhin\img1.jpg" />
+    <Content Include="Content\Theme_Assets\images\slides\Tuhin\img2.jpg" />
+    <Content Include="Content\Theme_Assets\images\slides\Tuhin\img3.jpg" />
     <Content Include="Content\Theme_Assets\images\slides\_notes\dwsync.xml" />
     <Content Include="Content\Theme_Assets\jquery.dataTables.min.css" />
     <Content Include="Content\Theme_Assets\js\bootstrap.min.js" />
@@ -545,6 +560,14 @@
     <Content Include="Views\Job\PersonalJobApplication.cshtml" />
     <Content Include="Views\Alumni\UploadResume.cshtml" />
     <Content Include="Views\Alumni\ViewResume.cshtml" />
+    <Content Include="Views\Job\PostedJobApplication.cshtml" />
+    <Content Include="Views\Job\PersonalPostedJob.cshtml" />
+    <Content Include="Views\Job\ApplicationDetail.cshtml" />
+    <Content Include="Views\Admin\AccountRegistrationRequest.cshtml" />
+    <Content Include="Views\Admin\JobPostRequest.cshtml" />
+    <Content Include="Views\Admin\AddAdmin.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\updateJobStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -573,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707251642177_V5.resx">
       <DependentUpon>201707251642177_V5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141244322_V6.resx">
+      <DependentUpon>201710141244322_V6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

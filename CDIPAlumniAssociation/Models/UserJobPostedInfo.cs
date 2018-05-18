@@ -12,12 +12,19 @@ namespace CDIPAlumniAssociation.Models
 
         public int JobInfoId { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
+
+        public int? AdminId { get; set; }
 
         [ForeignKey("JobInfoId")]
         public virtual JobInfo JobInfo { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
+
+
+        [ForeignKey("AdminId")]
+        public virtual Admin Admin { get; set; }
+
     }
 }
